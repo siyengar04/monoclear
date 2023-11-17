@@ -36,7 +36,7 @@ const App = () => {
       await replRawMode(true);
       let utf8Encode = new TextEncoder();
       utf8Encode.encode('display.Text(formattedWeather, 90,90,display.RED)');
-      response = await replSend(utf8Encode.encode('display.Text(formattedWeather, 90,90,display.RED)'));
+      response = await replSend(utf8Encode);
       await replRawMode(false);
       
     } catch (error) {
