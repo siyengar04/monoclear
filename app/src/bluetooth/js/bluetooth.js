@@ -1,4 +1,5 @@
 import { receiveRawData, onDisconnect } from "./main.js"
+import { relay } from "./relay.js";
 import { nordicDfuHandleControlResponse } from './nordicdfu.js'
 
 let device = null;
@@ -27,8 +28,7 @@ export const rawDataTxQueue = [];
 let replTxTaskIntervalId = null
 let replDataTxInProgress = false;
 let rawDataTxInProgress = false;
-
-let relayCallback;
+let statusCallback;
 
 // Web-Bluetooth doesn't have any MTU API, so we just set it to something reasonable
 const max_mtu = 100;
@@ -42,14 +42,14 @@ export function isConnected() {
     return false;
 }
 
-export async function connect(relayCallbackArg) {
+export async function connect(statusCallbackArg) {
+
+    statusCallback = statusCallbackArg;
 
     if (!navigator.bluetooth) {
         return Promise.reject("This browser doesn't support WebBluetooth. " +
             "Make sure you're on Chrome Desktop/Android or BlueFy iOS.")
     }
-
-    // relayCallback = relayCallbackArg;
 
     // Bluefy on ios currently doesn't allow multiple filters
     if (/iPhone|iPad/.test(navigator.userAgent)) {
@@ -103,7 +103,7 @@ export async function connect(relayCallbackArg) {
     return Promise.resolve("repl connected");
 }
 
-export async function disconnect() {
+export async function disconnect(statusCallback) {
 
     if (device && device.gatt.connected) {
         await device.gatt.disconnect();
@@ -113,7 +113,8 @@ export async function disconnect() {
     clearInterval(replTxTaskIntervalId);
 
     // Callback to main.js
-    onDisconnect();
+    // this does not work, statusCallback undefined, have to propogate reference to main app somehow
+    onDisconnect(statusCallback);
 }
 
 function receiveNordicDfuControlData(event) {
@@ -129,11 +130,11 @@ export async function transmitNordicDfuPacketData(bytes) {
 }
 
 function receiveReplData(event) {
-
     // Decode the byte array into a UTF-8 string
     const decoder = new TextDecoder('utf-8');
+    const decodedMsg = decoder.decode(event.target.value);
 
-    relayCallback(decoder.decode(event.target.value));
+    statusCallback('relay: ' + decodedMsg)
 }
 
 async function transmitReplData() {

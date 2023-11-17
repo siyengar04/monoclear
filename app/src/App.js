@@ -3,6 +3,14 @@ import React from 'react';
 import { sendToMonocle } from './comms.js';
 import {statusCallback, relayCallback} from './bluetooth/js/main.js';
 import {ensureConnected} from './bluetooth/js/main.js';
+import { connect, disconnect, isConnected } from "./bluetooth/js/bluetooth.js";
+import { startNordicDFU } from "./bluetooth/js/nordicdfu.js"
+
+
+
+
+
+
 var response;
 
 const App = () => {

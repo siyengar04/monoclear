@@ -5,7 +5,7 @@ import { transmitNordicDfuControlData, transmitNordicDfuPacketData } from "./blu
 import { gitInfo } from "./update.js";
 import { reportUpdatePercentage } from "./main.js"
 import { request } from "@octokit/request";
-import JSZip from 'jszip'
+import JSZip from "jszip"
 
 let controlResponseCallback;
 
