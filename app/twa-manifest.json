@@ -1,0 +1,50 @@
+{
+  "packageId": "com.githubusercontent.raw.twa",
+  "host": "raw.githubusercontent.com",
+  "name": "app",
+  "launcherName": "app",
+  "display": "standalone",
+  "themeColor": "#FFFFFF",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://github.com/simonevetere/monocle/blob/9604e4fceeb20d3c4f470a1f31f7ee15f0cf64b4/docs/logo512.png?raw=true",
+  "maskableIconUrl": "https://github.com/simonevetere/monocle/blob/9604e4fceeb20d3c4f470a1f31f7ee15f0cf64b4/docs/logo192.png?raw=true",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/home/samee/monoclear/app/android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://raw.githubusercontent.com/jdc-cunningham/bl-monocle-reactjs-pwa/master/app/package.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "playBilling": {
+      "enabled": true
+    },
+    "locationDelegation": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": true
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://raw.githubusercontent.com/jdc-cunningham/bl-monocle-reactjs-pwa/master/app/",
+  "minSdkVersion": 19,
+  "orientation": "default",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "1"
+}

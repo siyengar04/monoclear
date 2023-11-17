@@ -2,7 +2,7 @@
 import { replRawMode, replSend } from './bluetooth/js/repl';
 
 // send to monocle display
-const sendToMonocle = async (replStr) => {
+export const sendToMonocle = async (replStr) => {
   await replRawMode(true);
   await replSend(replStr);
 }
