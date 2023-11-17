@@ -49,7 +49,7 @@ export async function connect(relayCallbackArg) {
             "Make sure you're on Chrome Desktop/Android or BlueFy iOS.")
     }
 
-    relayCallback = relayCallbackArg;
+    // relayCallback = relayCallbackArg;
 
     // Bluefy on ios currently doesn't allow multiple filters
     if (/iPhone|iPad/.test(navigator.userAgent)) {

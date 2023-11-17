@@ -1,6 +1,9 @@
+import { replSend, replRawMode } from "./bluetooth/js/repl.js"
 import React from 'react';
 import { sendToMonocle } from './comms.js';
 import {statusCallback, relayCallback} from './bluetooth/js/main.js';
+import {ensureConnected} from './bluetooth/js/main.js';
+var response;
 
 const App = () => {
   
@@ -30,7 +33,12 @@ const App = () => {
 
       // Format and send the detailed weather data
       const formattedWeather = formatWeatherData(detailedData);
-      sendToMonocle(formattedWeather);
+      await replRawMode(true);
+      let utf8Encode = new TextEncoder();
+      utf8Encode.encode('display.Text(formattedWeather, 90,90,display.RED)');
+      response = await replSend(utf8Encode.encode('display.Text(formattedWeather, 90,90,display.RED)'));
+      await replRawMode(false);
+      
     } catch (error) {
       console.error('Error fetching or processing weather data:', error);
     }

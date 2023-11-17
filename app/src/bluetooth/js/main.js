@@ -22,7 +22,7 @@ export async function ensureConnected(statusCallback, relayCallback) {
         }
 
         if (connectionResult === "repl connected") {
-            statusCallback("Connected");
+            // statusCallback("Connected");
         }
     }
 
@@ -31,7 +31,7 @@ export async function ensureConnected(statusCallback, relayCallback) {
         if (error.message && error.message.includes("cancelled")) {
             return;
         }
-        statusCallback(JSON.stringify(error));
+        // statusCallback(JSON.stringify(error));
         console.error(error);
     }
 }
